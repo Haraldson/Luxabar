@@ -1,0 +1,25 @@
+.columns,
+.rows {
+    display: flex;
+    flex: 1;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.columns .column,
+.rows .row {
+    flex: 1;
+
+    &.shrink { flex: 0 0 auto; }
+    &.grow { flex: 1 100 100%; }
+}
+
+.columns {
+    flex-direction: row;
+    .column { min-width: 0; }
+}
+
+.rows {
+    flex-direction: column;
+    .row { min-width: 0; }
+}
