@@ -52,8 +52,6 @@ export default Application.extend({
             return decimalBrightness(decimal, brightness)
         })
 
-        console.log(color)
-
         device.write([2, 0xFF, ...color, 0x33, 0])
     }
 })
