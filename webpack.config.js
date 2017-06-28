@@ -7,7 +7,7 @@ const path = require('path')
 const merge = require('webpack-merge')
 
 const webpackCommon = {
-    target: 'web',
+    target: 'electron-renderer',
 
     entry: {
         app: ['./src']
@@ -19,6 +19,10 @@ const webpackCommon = {
                 test: /\.js?$/,
                 exclude: /node_modules/,
                 use: [{ loader: 'babel-loader?presets[]=es2015' }]
+            },
+            {
+                test: /\.node$/,
+                use: 'node-loader'
             },
             {
                 test: /\.hbs$/,
@@ -42,14 +46,31 @@ const webpackCommon = {
         new ExtractTextPlugin('styles.css'),
         new CopyWebpackPlugin([
             {
+                from: './src/node_modules',
+                to: './node_modules'
+            },
+            {
+                from: './src/electron.js',
+                to: './index.js'
+            },
+            {
                 from: './src/index.html',
                 to: './index.html'
+            },
+            {
+                from: './src/package.json',
+                to: './package.json'
+            },
+            {
+                from: './src/icon.icns',
+                to: './icon.icns'
             }
         ],
         { ignore: ['.DS_Store'] }),
         new webpack.ProvidePlugin({
             $: 'jquery',
-            _: 'lodash'
+            _: 'lodash',
+            menubar: 'menubar'
         })
     ],
 

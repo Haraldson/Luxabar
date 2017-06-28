@@ -1,0 +1,18 @@
+{
+  "name": "luxafor-menubar",
+  "description": "Luxafor signal proxy and manual control panel right in the menubar",
+  "author": "Hein Haraldson Berg",
+  "version": "0.0.1",
+  "scripts": {
+    "postinstall": "./node_modules/.bin/electron-rebuild -f -w node-hid"
+  },
+  "dependencies": {
+    "menubar": "^5.2.3",
+    "node-hid": "^0.5.4",
+    "node-usb-detection": "^1.0.2"
+  },
+  "devDependencies": {
+    "electron": "^1.7.3",
+    "electron-rebuild": "^1.5.11"
+  }
+}
