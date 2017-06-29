@@ -5,7 +5,7 @@ import { hexToDecimal, decimalBrightness } from './colors'
 import rtmClient from 'slack/methods/rtm.client-browser'
 import dndInfo from 'slack/methods/dnd.info'
 import Config from 'config.json'
-import Credentials from '../credentials.json'
+import Credentials from 'credentials.json'
 import gui from 'gui'
 import { get, filter, map } from 'lodash'
 
