@@ -12,7 +12,7 @@ export default View.extend({
     },
 
     events: {
-        'change @ui.brightnessSlider': 'setBrightness'
+        'input @ui.brightnessSlider': 'setBrightness'
     },
 
     onRender() {

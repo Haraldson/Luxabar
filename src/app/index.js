@@ -7,7 +7,7 @@ import dndInfo from 'slack/methods/dnd.info'
 import Config from 'config.json'
 import Credentials from 'credentials.json'
 import gui from 'gui'
-import { get, filter, map } from 'lodash'
+import { debounce, get, filter, map } from 'lodash'
 
 const { oauthAccessToken, botUserOauthToken } = Credentials
 const slacket = rtmClient()
@@ -23,6 +23,7 @@ export default Application.extend({
         this.channel.on('color:set', color => { this.onColorSet(color) })
         this.channel.on('brightness:set', brightness => { this.onBrightnessSet(brightness) })
 
+        this.updateFlag = debounce(this.updateFlag, 150, { leading: false, maxWait: 300, trailing: true })
         this.listenTo(this.state, 'change', () => { this.updateFlag() })
 
         slacket.dnd_updated_user(() => {
