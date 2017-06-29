@@ -1,20 +1,20 @@
 import { Application } from 'backbone.marionette'
 import { Model, Radio } from 'backbone'
-import hid from 'node-hid/build/Release/HID.node'
+import luxafor from './luxafor'
+import { hexToDecimal, decimalBrightness } from './colors'
+import rtmClient from 'slack/methods/rtm.client-browser'
+import dndInfo from 'slack/methods/dnd.info'
 import Config from 'config.json'
+import Credentials from '../credentials.json'
 import gui from 'gui'
 import { get, filter, map } from 'lodash'
-import { hexToDecimal, decimalBrightness } from './colors'
 
-const luxaforDevice = get(filter(hid.devices(), device => {
-    return device.product.includes('LUXAFOR')
-}), '0', null)
-
-const device = new hid.HID(luxaforDevice.path)
+const { oauthAccessToken, botUserOauthToken } = Credentials
+const slacket = rtmClient()
 
 export default Application.extend({
-    el: '#luxafor-menubar',
-    region: '#luxafor-menubar',
+    el: '#luxabar',
+    region: '#luxabar',
 
     initialize() {
         this.channel = Radio.channel('app')
@@ -24,6 +24,15 @@ export default Application.extend({
         this.channel.on('brightness:set', brightness => { this.onBrightnessSet(brightness) })
 
         this.listenTo(this.state, 'change', () => { this.updateFlag() })
+
+        slacket.dnd_updated_user(() => {
+            dndInfo({ token: oauthAccessToken }, (error, data) => {
+                // TODO: Read data, update flag accordingly
+                console.log(data)
+            })
+        })
+
+        slacket.listen({ token: botUserOauthToken })
     },
 
     onStart() {
@@ -52,6 +61,6 @@ export default Application.extend({
             return decimalBrightness(decimal, brightness)
         })
 
-        device.write([2, 0xFF, ...color, 0x33, 0])
+        luxafor.write([2, 0xFF, ...color, 0x33, 0])
     }
 })
