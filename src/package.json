@@ -9,7 +9,8 @@
   "dependencies": {
     "menubar": "^5.2.3",
     "node-hid": "^0.5.4",
-    "node-usb-detection": "^1.0.2"
+    "node-usb-detection": "^1.0.2",
+    "slack": "^8.3.1"
   },
   "devDependencies": {
     "electron": "^1.7.3",
