@@ -2,15 +2,9 @@ import { Application } from 'backbone.marionette'
 import { Model, Radio } from 'backbone'
 import luxafor from './luxafor'
 import { hexToDecimal, decimalBrightness } from './colors'
-import rtmClient from 'slack/methods/rtm.client-browser'
-import dndInfo from 'slack/methods/dnd.info'
 import Config from 'config.json'
-import Credentials from 'credentials.json'
 import gui from 'gui'
-import { debounce, get, filter, map } from 'lodash'
-
-const { oauthAccessToken, botUserOauthToken } = Credentials
-const slacket = rtmClient()
+import { get, debounce, map } from 'lodash'
 
 export default Application.extend({
     el: '#luxabar',
@@ -18,22 +12,14 @@ export default Application.extend({
 
     initialize() {
         this.channel = Radio.channel('app')
-        this.state = new Backbone.Model
+        this.state = new Backbone.Model(get(Config, 'defaults'))
 
         this.channel.on('color:set', color => { this.onColorSet(color) })
         this.channel.on('brightness:set', brightness => { this.onBrightnessSet(brightness) })
 
         this.updateFlag = debounce(this.updateFlag, 150, { leading: false, maxWait: 300, trailing: true })
         this.listenTo(this.state, 'change', () => { this.updateFlag() })
-
-        slacket.dnd_updated_user(() => {
-            dndInfo({ token: oauthAccessToken }, (error, data) => {
-                // TODO: Read data, update flag accordingly
-                console.log(data)
-            })
-        })
-
-        slacket.listen({ token: botUserOauthToken })
+        this.updateFlag()
     },
 
     onStart() {

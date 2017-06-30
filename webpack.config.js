@@ -29,10 +29,6 @@ const webpackCommon = {
                 use: { loader: 'handlebars-loader' }
             },
             {
-                test: /\.(png|svg)$/,
-                use: { loader: 'file-loader?name=assets/gfx/[name].[ext]' }
-            },
-            {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
@@ -45,26 +41,12 @@ const webpackCommon = {
     plugins: [
         new ExtractTextPlugin('styles.css'),
         new CopyWebpackPlugin([
-            {
-                from: './src/node_modules',
-                to: './node_modules'
-            },
-            {
-                from: './src/electron.js',
-                to: './index.js'
-            },
-            {
-                from: './src/index.html',
-                to: './index.html'
-            },
-            {
-                from: './src/package.json',
-                to: './package.json'
-            },
-            {
-                from: './src/icon.icns',
-                to: './icon.icns'
-            }
+            { from: './src/node_modules', to: './node_modules' },
+            { from: './src/electron.js', to: './index.js' },
+            { from: './src/index.html', to: './index.html' },
+            { from: './src/package.json', to: './package.json' },
+            { from: './src/IconTemplate.png', to: './IconTemplate.png' },
+            { from: './src/IconTemplate@2x.png', to: './IconTemplate@2x.png' }
         ],
         { ignore: ['.DS_Store'] }),
         new webpack.ProvidePlugin({

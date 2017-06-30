@@ -1,10 +1,8 @@
-import { Collection } from 'backbone'
 import { View } from 'backbone.marionette'
 import template from './template.hbs'
-import { get } from 'lodash'
-import Config from 'config.json'
 
-import Colors from './colors'
+import Manual from './manual'
+import Automatic from './automatic'
 import Brightness from './brightness'
 
 export default View.extend({
@@ -12,9 +10,13 @@ export default View.extend({
     id: 'gui',
     className: 'rows',
 
+    ui: {
+        automaticSwitch: '#automatic-switch'
+    },
+
     regions: {
-        colors: {
-            el: '[data-region="colors"]',
+        pane: {
+            el: '[data-region="pane"]',
             replaceElement: true
         },
         brightness: {
@@ -23,11 +25,26 @@ export default View.extend({
         }
     },
 
-    onRender() {
-        this.showChildView('colors', new Colors({
-            collection: new Collection(get(Config, 'palette'))
-        }))
+    events: {
+        'change @ui.automaticSwitch': 'onAutomaticSwitchChange'
+    },
 
+    onRender() {
+        this.showPaneView()
         this.showChildView('brightness', new Brightness)
+    },
+
+    onAutomaticSwitchChange() {
+        this.showPaneView()
+    },
+
+    showPaneView() {
+        const mode = this.ui.automaticSwitch.prop('checked') ? 'automatic' : 'manual'
+        const map = {
+            manual: Manual,
+            automatic: Automatic
+        }
+
+        this.showChildView('pane', new map[mode])
     }
 })

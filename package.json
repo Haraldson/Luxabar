@@ -2,12 +2,12 @@
   "name": "luxafor-menubar",
   "description": "Luxafor signal proxy and manual control panel right in the menubar",
   "author": "Hein Haraldson Berg",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "./index.js",
   "scripts": {
     "prebuild": "rm -rf ./dist/",
     "build": "webpack -p",
-    "package": "./node_modules/.bin/electron-packager ./dist Luxabar --platform=darwin --icon=./dist/icon.icns --overwrite",
+    "package": "./node_modules/.bin/electron-packager ./dist Luxabar --platform=darwin --icon=./src/icon.icns --overwrite",
     "bundle": "npm run build && npm run package"
   },
   "dependencies": {
@@ -50,5 +50,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/Haraldson/luxafor-menubar-app.git"
-  }
+  },
+  "false": {}
 }

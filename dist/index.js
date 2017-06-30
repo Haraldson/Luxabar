@@ -1,8 +1,25 @@
+const debug = false
+
 const Menubar = require('menubar')
-const menubar = Menubar()
+
+const menubar = Menubar({
+    width: 540,
+    height: 200,
+    preloadWindow: true
+})
 
 menubar.on('ready', () => {
-    console.log('app is ready')
+
+})
+
+menubar.on('after-hide', () => {
+    if(!debug)
+        menubar.app.hide()
+})
+
+menubar.on('after-create-window', () => {
+    if(debug)
+        menubar.window.openDevTools()
 })
 
 // ready - when the app has been created and initialized
@@ -14,7 +31,3 @@ menubar.on('ready', () => {
 // after-hide - the line after window.hide is called
 // after-close - after the .window (BrowserWindow) property has been deleted
 // focus-lost - emitted if always-on-top option is set and the user clicks away
-
-menubar.on('after-create-window', () => {
-    menubar.window.openDevTools()
-})

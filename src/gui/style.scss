@@ -1,5 +1,79 @@
 #gui {
+    height: 100vh;
     position: relative;
 
-    @import 'colors/style';
+    .switch {
+        height: 40px;
+        float: right;
+        margin-right: 20px;
+
+        & *,
+        & *:after,
+        & *:before {
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        > label {
+            padding-right: 10px;
+            float: left;
+            font-size: 12px;
+            line-height: 40px;
+            color: rgba(#000, .5);
+            cursor: pointer;
+        }
+
+        .control {
+            float: left;
+
+            input[type="checkbox"] {
+                display: none;
+
+                &:checked + label {
+                    background: #222;
+                    &:after { left: 50%; }
+                }
+
+                + label {
+                    display: block;
+                    width: 40px;
+                    height: 20px;
+                    position: relative;
+                    margin: 10px 0;
+                    background: #eee;
+                    border-radius: 20px;
+                    padding: 1px;
+                    cursor: pointer;
+                    @include transition(all, .2s, ease);
+
+                    &:after,
+                    &:before {
+                        content: "";
+                        display: block;
+                        width: 50%;
+                        height: 100%;
+                        position: relative;
+                    }
+
+                    &:after {
+                        left: 0;
+                        border-radius: 50%;
+                        background: #fff;
+                        @include transition(all, .1s, ease);
+                    }
+
+                    &:before { display: none; }
+                }
+            }
+        }
+    }
+
+    .pane {
+        position: relative;
+
+        @import 'manual/style';
+        @import 'automatic/style';
+    }
+
+    @import 'brightness/style';
 }

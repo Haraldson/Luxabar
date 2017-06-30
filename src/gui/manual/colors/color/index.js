@@ -15,11 +15,6 @@ export default View.extend({
         'click': 'setColor'
     },
 
-    onRender() {
-        if(this.model.collection.indexOf(this.model) == 0)
-            this.setColor()
-    },
-
     setColor() {
         Radio.trigger('app', 'color:set', this.model.get('color'))
     }
