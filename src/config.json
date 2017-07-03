@@ -1,41 +1,41 @@
 {
     "defaults": {
-        "color": ["00", "ff", "00"],
-        "brightness": 33
+        "color": [0, 255, 0],
+        "brightness": 35,
+        "connected": false
     },
 
     "palette": [
         {
             "id": "green",
-            "color": ["00", "ff", "00"]
+            "color": [0, 255, 0],
+            "screencolor": [127, 255, 0]
         },
         {
             "id": "yellow",
-            "color": ["ff", "ff", "00"]
+            "color": [255, 150, 0],
+            "screencolor": [255, 215, 0]
         },
         {
             "id": "orange",
-            "color": ["ff", "a5", "00"]
+            "color": [255, 50, 0],
+            "screencolor": [255, 127, 0]
         },
         {
             "id": "red",
-            "color": ["ff", "00", "00"]
+            "color": [255, 0, 0]
         },
         {
             "id": "purple",
-            "color": ["ff", "00", "ff"]
+            "color": [255, 0, 255]
         },
         {
             "id": "blue",
-            "color": ["00", "00", "ff"]
+            "color": [0, 0, 255]
         },
         {
             "id": "white",
-            "color": ["ff", "ff", "ff"]
-        },
-        {
-            "id": "off",
-            "color": ["00", "00", "00"]
+            "color": [255, 255, 255]
         }
     ]
 }

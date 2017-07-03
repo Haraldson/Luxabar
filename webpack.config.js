@@ -51,8 +51,7 @@ const webpackCommon = {
         { ignore: ['.DS_Store'] }),
         new webpack.ProvidePlugin({
             $: 'jquery',
-            _: 'lodash',
-            menubar: 'menubar'
+            _: 'lodash'
         })
     ],
 
@@ -63,7 +62,10 @@ const webpackCommon = {
         ],
         alias: {
             jquery: 'jquery/src/jquery',
-            handlebars: 'handlebars/dist/handlebars'
+            handlebars: 'handlebars/dist/handlebars',
+            'node-hid': 'node-hid/build/Release/HID.node',
+            usb: 'usb/build/Release/usb_bindings.node',
+            'usb-detection': 'usb-detection/build/Release/detection.node'
         }
     },
 

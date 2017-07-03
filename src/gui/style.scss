@@ -70,6 +70,7 @@
 
     .pane {
         position: relative;
+        background: rgba(#000, .05);
 
         @import 'manual/style';
         @import 'automatic/style';

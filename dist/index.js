@@ -1,9 +1,8 @@
-const debug = false
-
+const debug = true
 const Menubar = require('menubar')
 
 const menubar = Menubar({
-    width: 540,
+    width: 490,
     height: 200,
     preloadWindow: true
 })

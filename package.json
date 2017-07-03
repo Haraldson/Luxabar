@@ -2,7 +2,7 @@
   "name": "luxafor-menubar",
   "description": "Luxafor signal proxy and manual control panel right in the menubar",
   "author": "Hein Haraldson Berg",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "main": "./index.js",
   "scripts": {
     "prebuild": "rm -rf ./dist/",
@@ -18,7 +18,10 @@
     "jquery": "^3.2.1",
     "lodash": "^3.10.1",
     "menubar": "*",
-    "node-hid": "^0.5.4"
+    "node-hid": "^0.5.4",
+    "sumi-color": "^1.0.6",
+    "usb": "git+https://github.com/tessel/node-usb.git#1.3.0",
+    "usb-detection": "^1.4.0"
   },
   "devDependencies": {
     "babel-core": "^6.7.6",
