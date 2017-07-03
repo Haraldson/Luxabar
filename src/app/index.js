@@ -1,6 +1,6 @@
 import { Application } from 'backbone.marionette'
 import { Model, Radio } from 'backbone'
-import usb from 'usb-detection'
+// import usb from 'usb-detection'
 import { getLuxaforDevice } from './luxafor'
 import { Color } from 'sumi-color'
 import Config from 'config.json'
@@ -15,14 +15,14 @@ export default Application.extend({
         this.channel = Radio.channel('app')
         this.state = new Backbone.Model(get(Config, 'defaults'))
 
-        console.log(usb)
-        usb.on('attach', device => {
-            console.log('attach', device)
-        })
-
-        usb.on('detach', device => {
-            console.log('detach', device)
-        })
+        // console.log(usb)
+        // usb.on('attach', device => {
+        //     console.log('attach', device)
+        // })
+        //
+        // usb.on('detach', device => {
+        //     console.log('detach', device)
+        // })
 
         this.channel.on('color:set', color => { this.onColorSet(color) })
         this.channel.on('brightness:set', brightness => { this.onBrightnessSet(brightness) })

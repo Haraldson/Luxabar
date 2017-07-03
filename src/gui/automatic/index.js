@@ -26,7 +26,10 @@ export default View.extend({
 
     initialize() {
         this.setColor()
-        slacket.dnd_updated_user(() => { this.setColor() })
+        slacket.dnd_updated_user(() => {
+            console.log(arguments)
+            this.setColor()
+        })
 
         slacket.listen({ token: botUserOauthToken })
     },
@@ -49,3 +52,7 @@ export default View.extend({
         slacket.close()
     }
 })
+
+
+// https://api.slack.com/events/dnd_updated_user
+// https://api.slack.com/apps/A5XL3AMCK/install-on-team
