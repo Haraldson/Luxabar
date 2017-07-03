@@ -15,9 +15,7 @@ Then install the depencencies normally using `npm install`, both in the project 
 
 ```bash
 $ npm install node-gyp node-pre-gyp -g
-$ npm install
-$ cd src
-$ npm install
+$ npm install && cd src && npm install && cd -
 ```
 
 Then, you have to [create a Slack App](https://api.slack.com/apps/new);
@@ -33,4 +31,4 @@ Then, you have to [create a Slack App](https://api.slack.com/apps/new);
 }
 ```
 
-By now you should be set to run `npm run bundle` back in the project root. Provided everything works, you now have an app waiting for you!
+By now you should be all set to run `npm run bundle`. Provided everything works, you now have an app waiting for you!
