@@ -7,9 +7,7 @@ A menubar app made for the [Luxafor](http://luxafor.com/) Flag. It currently sup
 
 ## Building
 
-Building has been tested using Node version
-
-Before installing the app’s dependencies using npm, you might need to install certain depencencies globally on your system, such as `node-gyp` and `node-pre-gyp`, in order to be enable the `postinstall` script to build the required `.node` versions.
+Before installing the app’s dependencies using npm, you might need to install certain depencencies globally on your system, such as `node-gyp` and `node-pre-gyp`, in order to enable the `postinstall` script to build the required `.node` versions.
 
 Then install the depencencies normally using `npm install`, both in the project root, and again in the `src` folder.
 
@@ -31,4 +29,4 @@ Then, you have to [create a Slack App](https://api.slack.com/apps/new);
 }
 ```
 
-By now you should be all set to run `npm run bundle`. Provided everything works, you now have an app waiting for you!
+By now you should be all set to run `npm run bundle`. Provided everything works, you now have an app waiting for you in your repo directory!
